@@ -13,4 +13,5 @@
   "files.associations": {
     "*.css": "postcss",
   },
+  "i18n-ally.sourceLanguage": "en",
 }

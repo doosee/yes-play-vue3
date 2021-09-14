@@ -8,8 +8,9 @@ body,
   padding: 0;
 }
 
-html.dark {
+html.dark body{
   background: #121212;
+  transition: background-color .2s;
 }
 
 #nprogress {

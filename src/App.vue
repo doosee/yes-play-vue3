@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
+import { useSetup } from './hooks/useSetup'
 
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
@@ -10,6 +11,9 @@ useHead({
     { name: 'description', content: 'Opinionated Vite Starter Template' },
   ],
 })
+
+useSetup()
+
 </script>
 
 <template>

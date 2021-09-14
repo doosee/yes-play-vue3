@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { isDark, toggleDark } from '~/logic'
+import { useToggleDark } from '~/hooks/useToggleDark'
+
+const { isDark, toggleDark } = useToggleDark()
 
 const { t, availableLocales, locale } = useI18n()
 

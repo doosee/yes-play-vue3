@@ -14,6 +14,11 @@ import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Inspect from 'vite-plugin-inspect'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
+import { getLessVars } from 'antd-theme-generator';
+
+import { viteThemePlugin, antdDarkThemePlugin } from 'vite-plugin-theme';
+
+const antdDarkVars = getLessVars('./node_modules/ant-design-vue/lib/style/themes/dark.less')
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -23,6 +28,19 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
+
+  // https://github.com/vueComponent/ant-design-vue/issues/4220
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {
+          'primary-color': '#3209a6'
+        }
+      },
+    },
+  },
+  
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/],
@@ -135,6 +153,16 @@ export default defineConfig({
     Inspect({
       // change this to enable inspect for debugging
       enabled: false,
+    }),
+
+    viteThemePlugin({
+      colorVariables: ['#7546c9'],
+    }),
+    antdDarkThemePlugin({
+      darkModifyVars: {
+        'primary-color': '#7546c9',
+        ...antdDarkVars
+      }
     }),
   ],
 

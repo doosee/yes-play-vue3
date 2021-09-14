@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Input } from 'ant-design-vue'
 import { useUserStore } from '~/stores/user'
 
 const user = useUserStore()
@@ -19,9 +20,7 @@ const { t } = useI18n()
       <carbon-campsite class="inline-block" />
     </p>
     <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
-      </a>
+      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">Vitesse</a>
     </p>
     <p>
       <em class="text-sm opacity-75">{{ t('intro.desc') }}</em>
@@ -29,29 +28,18 @@ const { t } = useI18n()
 
     <div class="py-4" />
 
-    <input
+    <Input
       id="input"
-      v-model="name"
+      v-model:value="name"
       :placeholder="t('intro.whats-your-name')"
       :aria-label="t('intro.whats-your-name')"
-      type="text"
       autocomplete="false"
       @keydown.enter="go"
-      p="x-4 y-2"
-      w="250px"
-      text="center"
-      bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
-      outline="none active:none"
-    >
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+    />
 
+    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
     <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
+      <button class="m-3 text-sm btn" :disabled="!name" @click="go">
         {{ t('button.go') }}
       </button>
     </div>
